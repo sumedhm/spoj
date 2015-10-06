@@ -3,7 +3,7 @@
 #include <vector>
 #include <queue>
 #include <utility>
-
+#define INF 10000000
 using namespace std;
 
 struct compare{
@@ -15,13 +15,13 @@ struct compare{
 int distance(int src, int dest, int n, int m, int **neighbors){
 		int distance[n];
 		for(int i=0;i<n;i++){
-			distance[i] = -1;
+			distance[i] = INF;
 		}
+		distance[src] = 0;
 		pair<int,int> p(src,0);
 		pair<int,int> tmp;
 		priority_queue<pair<int,int>, vector<pair<int,int> >, compare> q;
 		q.push(p);
-		distance[src] = 0;
 		while(!q.empty()){
 			p = q.top();
 			q.pop();
@@ -51,7 +51,7 @@ int main(){
 		for(int i=0;i<n;i++) neighbors[i] = (int *) malloc (n*sizeof(int));
 		for(int i=0;i<n;i++)
 			for(int j=0;j<n;j++)
-				neighbors[i][j]=-1;
+				neighbors[i][j]=INF;
 		for(int i=0;i<m;i++){
 			cin >> a >> b >> duration;
 			neighbors[a-1][b-1] = neighbors[b-1][a-1] = duration;
